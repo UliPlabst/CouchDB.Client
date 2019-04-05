@@ -5,7 +5,7 @@ namespace CouchDB.Client
     /// <summary>
     /// http://docs.couchdb.org/en/2.2.0/   
     /// </summary>
-    public partial class CouchDatabase
+    public partial class CouchDatabase: IDisposable
     {
         private CouchClient client;
         private string database;
@@ -15,6 +15,11 @@ namespace CouchDB.Client
             client.http.client.BaseUrl = new Uri(client.connectionString + database);
             this.client = client;
             this.database = database;
+        }
+
+        public void Dispose()
+        {
+            client.ResetBaseUrl();
         }
     }
 }

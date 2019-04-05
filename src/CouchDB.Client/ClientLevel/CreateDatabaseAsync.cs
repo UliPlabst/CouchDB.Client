@@ -11,7 +11,7 @@ namespace CouchDB.Client
         /// <returns></returns>
         public async Task<CouchResponse> CreateDatabaseAsync(string databaseName)
         {
-            var request = new RestSharp.RestRequest(databaseName, RestSharp.Method.PUT);
+            var request = new RestSharp.RestRequest(databaseName, RestSharp.Method.PUT, RestSharp.DataFormat.Json);
             return await http.ExecuteAsync(request);
         }
     }
